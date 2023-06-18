@@ -1,0 +1,25 @@
+<h1>Pages#home</h1>
+<p>Find me in app/views/pages/home.html.erb</p>
+
+<% if user_signed_in? %>
+    <p>Hola <%= current_user.email %>!</p>
+    <p>Su perfil es [<%= current_user.role %>] </p>
+    
+    <% if current_user.admin? %>
+        Hay <%= User.count %> usuarios en el sistema.
+    <% end %>
+
+    <p>
+        Se ha autenticado con éxito con su cuenta de Devise.
+        Ahora está listo para interactuar con esta aplicación..    
+    </p>
+
+    <%= button_to "Cerrar sesion", destroy_user_session_path, method: :delete %>
+
+
+<% else %>
+    <p>No has iniciado sesión.</p>
+    <%= link_to "Registrarse", new_user_registration_path %>
+    <br>
+    <%= link_to "Iniciar Sesión", new_user_session_path %>
+<% end %>
