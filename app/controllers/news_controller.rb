@@ -1,7 +1,7 @@
 class NewsController < ApplicationController
   before_action :set_news, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, except: %i[ index show ]
-  # before_action :redirect_si_user_no_coincide_con_creador, only: %i[edit]
+
   before_action only: [:new, :create] do
     authorize_request(["author", "admin"])
   end
